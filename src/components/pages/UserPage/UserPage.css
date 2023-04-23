@@ -1,0 +1,17 @@
+.UserPage{
+    max-height: fit-content;
+    padding-top: 15px;
+    background-color: whitesmoke;
+    font-size: 18px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    border-radius: 10px;
+}
+
+.InputsPlace{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

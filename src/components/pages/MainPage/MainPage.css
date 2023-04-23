@@ -1,0 +1,8 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding-left: 50px;
+    padding-right: 50px;
+    background-color: whitesmoke;
+}
