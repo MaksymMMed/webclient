@@ -9,6 +9,10 @@ import ExercisePage from './components/pages/ExercisePage/ExercisesPage'
 import LessonPage from './components/pages/LessonPage/LessonPage'
 import RegisterPage from './components/pages/RegisterPage/RegisterPage';
 import UserPage from './components/pages/UserPage/UserPage';
+import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage';
+import AdminLessonsPage from './components/pages/AdminLessonPage/AdminLessonsPage';
+import AddLessonPage from './components/pages/AddLessonPage/AddLessonPage';
+
 
 const router = createBrowserRouter([
   {
@@ -26,6 +30,19 @@ const router = createBrowserRouter([
   {
     path:"/ExercisesPage",
     element: <MainPage><ExercisePage/></MainPage>
+  },
+  {
+    path:"/*",
+    element: <NotFoundPage/>
+  },
+  {
+    path:"/AddLessonPage",
+    element: <AddLessonPage/>
+  },
+  {
+    path:"/AdminLessonsPage",
+    element: <AdminLessonsPage/>
+    //element: <MainPage><AdminLessonsPage/></MainPage>
   },
   {
     path:"/RegisterPage",

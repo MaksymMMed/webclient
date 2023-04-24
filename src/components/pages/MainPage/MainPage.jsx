@@ -31,8 +31,7 @@ const MainPage = (props) =>{
         <div>
             <header>
                 <h1>Lang4Easy</h1>
-                <p>Profile </p>
-                <SmallButton onClick={openProfile}>{userData.Email}</SmallButton>
+                <SmallButton style={{width:"300px",marginTop:"25px"}} onClick={openProfile}>{userData.Email}</SmallButton>
             </header>
             {props.children}
         </div>

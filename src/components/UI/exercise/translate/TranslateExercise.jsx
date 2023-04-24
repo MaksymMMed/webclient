@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Classes from "./TranslateExercise.module.css"
-import SmallButton from "../../button/smallButton/SmallButton";
 import BigButton from "../../button/bigButton/BigButton";
 import axios from "axios";
 import MyInput from "../../input/MyInput";
@@ -48,13 +47,7 @@ const TranslateExercise = ({Exercise}) =>{
               <p>Exercise name : {Exercise.TranslateExercise.Name}</p>
               <p>Text to translate : {Exercise.TranslateExercise.Question}</p>
             </div>
-            {Exercise.TranslateExercise.UseBlocks === false
-             ? 
-              Exercise.TranslateExercise.TextBlocks.map((block,index) =>
-                <p key={index}>{block}</p>
-              )              
-             :
-             statusLabel === true 
+            {statusLabel === true 
               ?
               <div>
                 {done

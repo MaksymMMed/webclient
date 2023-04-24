@@ -24,18 +24,7 @@ const UserPage = () =>{
             <div className="InputsPlace">
                 <p style={{width:"120px"}}>Email:</p>
                 <MyInput disabled style ={{marginLeft:"5px"}} value={user.Email}/>
-            </div>
-            <div className="Exercises" style={{paddingBottom:"1px"}}>
-                <h2>Execises</h2>
-                {user.CompletedExercise.map((exercise,index) =>
-                (
-                    <div key={index}>
-                        <p> Name : {exercise.Exercise.Name}</p>
-                        <p> Lesson : {exercise.Exercise.Lesson.LessonName}</p>
-                    </div>
-                ))}
-            </div>
-            
+            </div>            
         </div>
     )
 }

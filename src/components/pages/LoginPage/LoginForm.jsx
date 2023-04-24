@@ -27,7 +27,7 @@ const LoginForm = () =>{
         {
           console.log("success")
           Navigate("/LessonsPage", {state: {userData:response.data}})
-        }        
+        }    
       })
       .catch(error => {
         alert("Неправильний логін або пароль")

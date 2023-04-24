@@ -27,7 +27,7 @@ const VoiceExercise = ({Exercise}) =>{
         var exerciseData = { userId:Exercise.IdUser,exerciseId:Exercise.IdExercise,recognizedText: recognizedText}  
         console.log(exerciseData)      
         axios
-        .post("/api/VoiceExercise/CheckVoice",JSON.stringify(exerciseData), config)
+        .post("/api/VoiceExercise/CheckRecognizedText",JSON.stringify(exerciseData), config)
         .then(response => {
             if (response.status === 200)
             {
