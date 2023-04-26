@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import MyInput from "../../UI/input/MyInput"
-import BigButton from "../../UI/button/bigButton/BigButton";
 import axios from "axios";
+import MyInput from "../../../UI/input/MyInput";
+import BigButton from "../../../UI/button/bigButton/BigButton";
 import "./AddLessonPage.css"
+
 
 const AddLessonPage = () =>{
 
@@ -11,7 +12,7 @@ const AddLessonPage = () =>{
 
     const config ={
         headers:{
-            "content-type" :"application-json"
+            'Content-Type': 'application/json'
         }
     }
 
@@ -22,7 +23,6 @@ const AddLessonPage = () =>{
         .then(response =>{
             if (response.status === 200) {
                 console.log("success")
-                alert("success")
                 SetNewLesson({LessonName:"",LessonDescription:""})
             }
         })

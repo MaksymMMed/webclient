@@ -1,10 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import AdminLesson from "../../UI/lesson/AdminLesson";
+import AdminLesson from "../../../UI/lesson/AdminLesson"
 const AdminLessonsPage = () =>
 {
-
     const config = {
         headers: {
           'Content-Type': 'application/json'

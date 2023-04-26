@@ -3,16 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider,} from "react-router-dom";
-import LoginForm from './components/pages/LoginPage/LoginForm';
-import MainPage from './components/pages/MainPage/MainPage';
-import ExercisePage from './components/pages/ExercisePage/ExercisesPage'
-import LessonPage from './components/pages/LessonPage/LessonPage'
-import RegisterPage from './components/pages/RegisterPage/RegisterPage';
-import UserPage from './components/pages/UserPage/UserPage';
-import NotFoundPage from './components/pages/NotFoundPage/NotFoundPage';
-import AdminLessonsPage from './components/pages/AdminLessonPage/AdminLessonsPage';
-import AddLessonPage from './components/pages/AddLessonPage/AddLessonPage';
 
+import LoginForm from './components/pages/GeneralPages/LoginPage/LoginForm';
+import RegisterPage from './components/pages/GeneralPages/RegisterPage/RegisterPage';
+import MainPage from './components/pages/GeneralPages/MainPage/MainPage';
+import ExercisePage from './components/pages/UserPages/ExercisePage/ExercisesPage';
+import LessonPage from './components/pages/UserPages/LessonPage/LessonPage';
+import ProfilePage from './components/pages/GeneralPages/ProfilePage/ProfilePage';
+import NotFoundPage from './components/pages/GeneralPages/NotFoundPage/NotFoundPage';
+import AdminExercisePage from './components/pages/AdminPages/AdminExercisePage/AdminExercisePage';
+import AddLessonPage from './components/pages/AdminPages/AddLessonPage/AddLessonPage';
+import AdminLessonsPage from './components/pages/AdminPages/AdminLessonPage/AdminLessonsPage';
+import AdminMainPage from './components/pages/GeneralPages/MainPage/AdminMainPage';
 
 const router = createBrowserRouter([
   {
@@ -20,8 +22,8 @@ const router = createBrowserRouter([
     element: <LoginForm/>,
   },
   {
-    path: "/UserPage",
-    element: <UserPage/>,
+    path: "/ProfilePage",
+    element: <ProfilePage/>,
   },
   {
     path:"/LessonsPage",
@@ -32,22 +34,26 @@ const router = createBrowserRouter([
     element: <MainPage><ExercisePage/></MainPage>
   },
   {
+    path:"/RegisterPage",
+    element: <RegisterPage/>
+  },
+  {
     path:"/*",
     element: <NotFoundPage/>
   },
   {
+    path: "/AdminExercisePage",
+    element: <AdminMainPage><AdminExercisePage/></AdminMainPage> 
+  },
+  {
     path:"/AddLessonPage",
-    element: <AddLessonPage/>
+    element: <AdminMainPage><AddLessonPage/></AdminMainPage>  
   },
   {
     path:"/AdminLessonsPage",
-    element: <AdminLessonsPage/>
-    //element: <MainPage><AdminLessonsPage/></MainPage>
+    element: <AdminMainPage><AdminLessonsPage/></AdminMainPage>
   },
-  {
-    path:"/RegisterPage",
-    element: <RegisterPage/>
-  }]);
+  ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

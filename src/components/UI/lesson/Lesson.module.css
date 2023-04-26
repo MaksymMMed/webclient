@@ -3,7 +3,7 @@
     margin-right: auto;
     margin-top: 15px;
     background-color: whitesmoke;
-    width: 500px;
+    max-width: 420px;
     padding: 5px;
     border-radius: 5px;
 }

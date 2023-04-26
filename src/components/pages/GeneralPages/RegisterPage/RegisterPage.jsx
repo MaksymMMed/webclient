@@ -1,19 +1,24 @@
-import React from "react";
-import { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import axios from "axios";
 import './RegisterPage.css'
-import MyInput from "../../UI/input/MyInput";
-import BigButton from '../../UI/button/bigButton/BigButton'
 import { Link,useNavigate } from "react-router-dom";
+import BigButton from "../../../UI/button/bigButton/BigButton";
+import MyInput from "../../../UI/input/MyInput";
+
 
 const RegisterPage = () =>{
     
+    const [IsDataCorrect,setIsDataCorrect] = useState()
     const [userData,setUserData] = useState({email:'',password:'',login:''})
     const config = {
       headers: {
         'Content-Type': 'application/json'
       }
     };
+
+    useEffect(()=>{
+      setIsDataCorrect(true)
+    },[])
 
     const Navigate = useNavigate();
 
@@ -27,11 +32,12 @@ const RegisterPage = () =>{
         {
           console.log("success")
           Navigate("/")
-        }        
+        }
       })
       .catch(error => {
         setUserData({email:"",password:"",login:""})
         console.log(error);
+        setIsDataCorrect(false)
       });
     }
 
@@ -50,12 +56,17 @@ const RegisterPage = () =>{
             <h3>Password</h3>
             <MyInput placeholder=" Введіть пароль..." value={userData.password} onChange={e=>setUserData({...userData, password : e.target.value})} />
           </div>
+          {IsDataCorrect === false
+          ?
+            <p style={{color:"red"}}>Користувач з таким email вже існує</p>
+          : null
+          } 
           <div className="Other">
             <p><Link to="/How">Забули пароль?</Link></p>
             <p><Link to="/">Авторизуватися</Link></p>
           </div>
           <div className="ButtonPlace">
-          <BigButton onClick={Register}>Зареєструватися</BigButton>
+          <BigButton style ={{marginBottom:"15px"}} onClick={Register}>Зареєструватися</BigButton>
           </div>
         </form>
         

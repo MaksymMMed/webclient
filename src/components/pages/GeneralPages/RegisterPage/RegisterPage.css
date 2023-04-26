@@ -1,9 +1,8 @@
 .RegisterPage{
-    width: 400px;
-    height: 490px;
+    max-width: 400px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 150px;
+    margin-top: 10 0px;
     background-color: whitesmoke;
     border-radius: 15px;
     text-align: center;

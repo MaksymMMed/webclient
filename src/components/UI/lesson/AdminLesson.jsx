@@ -10,7 +10,7 @@ const AdminLesson = ({Lesson}) =>
     const OpenLesson = (e) =>{
         e.preventDefault()
         console.log(Lesson);
-        Navigate("/ExercisesPage",{state : {lesson:Lesson}})
+        Navigate("/AdminExercisePage",{state : {Lesson:Lesson}})
     }
 
     return(

@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from 'react';
 import axios from "axios";
 import './LoginPage.css'
-import MyInput from "../../UI/input/MyInput";
-import BigButton from '../../UI/button/bigButton/BigButton'
+import MyInput from "../../../UI/input/MyInput";
+import BigButton from "../../../UI/button/bigButton/BigButton";
 import { Link,useNavigate } from "react-router-dom";
 
 const LoginForm = () =>{
 
     const [userData,setUserData] = useState({email:'JackD@gmail.com',password:'qwerty02'})
+    const [IsDataCorrect,setIsDataCorrect] = useState()
     const config = {
       headers: {
         'Content-Type': 'application/json'
@@ -16,6 +17,10 @@ const LoginForm = () =>{
     };
 
     const Navigate = useNavigate();
+
+    useEffect(()=>{
+      setIsDataCorrect(true)
+    },[])
 
     const LogIn = async(e) =>{
       console.log(userData);
@@ -26,11 +31,12 @@ const LoginForm = () =>{
         if (response.status === 200)
         {
           console.log("success")
+          localStorage.setItem("UserData",JSON.stringify(response.data))
           Navigate("/LessonsPage", {state: {userData:response.data}})
         }    
       })
       .catch(error => {
-        alert("Неправильний логін або пароль")
+        setIsDataCorrect(false)
         setUserData({email:"",password:""})
         console.log(error);
       });
@@ -47,12 +53,17 @@ const LoginForm = () =>{
             <h3>Password</h3>
             <MyInput placeholder=" Введіть пароль..." value={userData.password} onChange={e=>setUserData({...userData, password : e.target.value})} />
           </div>
+          {IsDataCorrect === false
+          ?
+            <p style={{color:"red"}}>Неправильний логін або пароль</p>
+          : null
+          } 
           <div className="Other">
             <p><Link to="/How">Забули пароль?</Link></p>
             <p><Link to="/RegisterPage">Зареєструватися</Link></p>
           </div>
           <div className="ButtonPlace">
-          <BigButton onClick={LogIn}>Увійти</BigButton>
+          <BigButton style ={{marginBottom:"15px"}} onClick={LogIn}>Увійти</BigButton>
           </div>
         </form>
         
