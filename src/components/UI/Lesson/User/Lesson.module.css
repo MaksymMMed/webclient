@@ -1,10 +1,7 @@
 .Lesson{
-    margin-left: auto;
-    margin-right: auto;
     margin-top: 15px;
     background-color: whitesmoke;
     max-width: 420px;
-    padding: 5px;
+    padding: 5px 5px 10px 5px;
     border-radius: 5px;
-    padding-bottom: 8px;
 }

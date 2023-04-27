@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState,useEffect  } from "react";
 import Lesson from "../../../UI/Lesson/User/Lesson"
 import axios from "axios";
-import { useEffect } from "react";
+import "./LessonPage.css"
 const LessonPage = () =>
 {
 
@@ -30,7 +30,7 @@ const LessonPage = () =>
     }
           
       return(
-        <div>
+        <div className="LessonPage">
             {lessons.map(_lesson =>
             (
               <Lesson key={_lesson.LessonName} lesson={_lesson}/>

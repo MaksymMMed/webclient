@@ -17,9 +17,6 @@ import AdminLessonsPage from './components/Pages/AdminPages/AdminLessonPage/Admi
 import AdminMainPage from './components/Pages/GeneralPages/MainPage/AdminMainPage';
 import AddGrammar from './components/Pages/AdminPages/AddExercisePage/AddGrammar/AddGrammar'; 
 
-
-
-
 const router = createBrowserRouter([
   {
     path: "/",

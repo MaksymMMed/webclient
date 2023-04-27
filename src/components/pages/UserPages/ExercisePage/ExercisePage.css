@@ -1,0 +1,12 @@
+.ExercisePage{
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ExerciseLabel{
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
