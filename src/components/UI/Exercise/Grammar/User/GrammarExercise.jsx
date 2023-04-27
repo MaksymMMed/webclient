@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Classes from "./GrammarExercise.module.css"
-import SmallButton from "../../button/smallButton/SmallButton";
-import BigButton from "../../button/bigButton/BigButton";
+import SmallButton from "../../../Button/SmallButton/SmallButton";
+import BigButton from "../../../Button/BigButton/BigButton";
 import axios from "axios";
 
 const GrammarExercise = ({Exercise}) =>{
@@ -22,7 +22,7 @@ const GrammarExercise = ({Exercise}) =>{
     }
 
     const check = async (e) => {
-        if (done ===true) {
+        if (done === true) {
           return
         }
         e.preventDefault()

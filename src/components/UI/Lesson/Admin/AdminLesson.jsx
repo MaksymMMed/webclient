@@ -1,6 +1,6 @@
 import React from "react";
-import Classes from "./Lesson.module.css"
-import BigButton from "../button/bigButton/BigButton";
+import Classes from "./AdminLesson.module.css"
+import BigButton from "../../Button/BigButton/BigButton";
 import { useNavigate } from "react-router-dom";
 const AdminLesson = ({Lesson}) =>
 {
@@ -9,15 +9,14 @@ const AdminLesson = ({Lesson}) =>
 
     const OpenLesson = (e) =>{
         e.preventDefault()
-        console.log(Lesson);
         Navigate("/AdminExercisePage",{state : {Lesson:Lesson}})
     }
 
     return(
         <div className={Classes.Lesson}>
-             <p>Назва уроку: {Lesson.LessonName}</p>
+            <p>Назва уроку: {Lesson.LessonName}</p>
             <p>Опис уроку: {Lesson.LessonDescription}</p>
-            <BigButton onClick={OpenLesson}>Відкрити урок</BigButton>
+            <BigButton style={{marginLeft:"auto",marginRight:"auto"}} onClick={OpenLesson}>Відкрити урок</BigButton>
         </div>
     )
 }

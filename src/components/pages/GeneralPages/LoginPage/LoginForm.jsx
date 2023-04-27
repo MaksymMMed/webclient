@@ -2,12 +2,13 @@ import React, { useEffect } from "react";
 import { useState } from 'react';
 import axios from "axios";
 import './LoginPage.css'
-import MyInput from "../../../UI/input/MyInput";
-import BigButton from "../../../UI/button/bigButton/BigButton";
+import BigButton from "../../../UI/Button/BigButton/BigButton";
+import BasicInput from "../../../UI/Input/BasicInput";
 import { Link,useNavigate } from "react-router-dom";
 
 const LoginForm = () =>{
 
+    const Navigate = useNavigate();
     const [userData,setUserData] = useState({email:'JackD@gmail.com',password:'qwerty02'})
     const [IsDataCorrect,setIsDataCorrect] = useState()
     const config = {
@@ -16,13 +17,12 @@ const LoginForm = () =>{
       }
     };
 
-    const Navigate = useNavigate();
 
     useEffect(()=>{
       setIsDataCorrect(true)
     },[])
 
-    const LogIn = async(e) =>{
+    const LogIn = (e) =>{
       console.log(userData);
       e.preventDefault();
       axios.post
@@ -30,9 +30,8 @@ const LoginForm = () =>{
       .then(response => {
         if (response.status === 200)
         {
-          console.log("success")
           localStorage.setItem("UserData",JSON.stringify(response.data))
-          Navigate("/LessonsPage", {state: {userData:response.data}})
+          Navigate("/LessonsPage")
         }    
       })
       .catch(error => {
@@ -43,15 +42,15 @@ const LoginForm = () =>{
     }
 
     return (
-        <form className="LoginForm">
+        <div className="LoginForm">
           <h1>Lang4Easy</h1>
           <div className="InputPlace">
             <h3>Email</h3>
-            <MyInput placeholder=" Введіть email..." value={userData.email} onChange={e=>setUserData({...userData, email : e.target.value})} />
+            <BasicInput placeholder=" Введіть email..." value={userData.email} onChange={e=>setUserData({...userData, email : e.target.value})} />
           </div>
           <div className="InputPlace">
             <h3>Password</h3>
-            <MyInput placeholder=" Введіть пароль..." value={userData.password} onChange={e=>setUserData({...userData, password : e.target.value})} />
+            <BasicInput placeholder=" Введіть пароль..." value={userData.password} onChange={e=>setUserData({...userData, password : e.target.value})} />
           </div>
           {IsDataCorrect === false
           ?
@@ -63,9 +62,9 @@ const LoginForm = () =>{
             <p><Link to="/RegisterPage">Зареєструватися</Link></p>
           </div>
           <div className="ButtonPlace">
-          <BigButton style ={{marginBottom:"15px"}} onClick={LogIn}>Увійти</BigButton>
+          <BigButton onClick={LogIn}>Увійти</BigButton>
           </div>
-        </form>
+        </div>
         
       );
 

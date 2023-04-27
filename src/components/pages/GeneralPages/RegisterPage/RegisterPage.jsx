@@ -2,8 +2,8 @@ import React, { useState,useEffect } from 'react';
 import axios from "axios";
 import './RegisterPage.css'
 import { Link,useNavigate } from "react-router-dom";
-import BigButton from "../../../UI/button/bigButton/BigButton";
-import MyInput from "../../../UI/input/MyInput";
+import BigButton from "../../../UI/Button/BigButton/BigButton";
+import BasicInput from "../../../UI/Input/BasicInput";
 
 
 const RegisterPage = () =>{
@@ -30,7 +30,6 @@ const RegisterPage = () =>{
       .then(response => {
         if (response.status === 200)
         {
-          console.log("success")
           Navigate("/")
         }
       })
@@ -42,19 +41,19 @@ const RegisterPage = () =>{
     }
 
     return (
-        <form className="RegisterPage">
+        <div className="RegisterPage">
           <h1>Lang4Easy</h1>
           <div className="InputPlace">
             <h3>Email</h3>
-            <MyInput placeholder=" Введіть email..." value={userData.email} onChange={e=>setUserData({...userData, email : e.target.value})} />
+            <BasicInput placeholder=" Введіть email..." value={userData.email} onChange={e=>setUserData({...userData, email : e.target.value})} />
           </div>
           <div className="InputPlace">
             <h3>Login</h3>
-            <MyInput placeholder=" Введіть логін..." value={userData.login} onChange={e=>setUserData({...userData, login : e.target.value})} />
+            <BasicInput placeholder=" Введіть логін..." value={userData.login} onChange={e=>setUserData({...userData, login : e.target.value})} />
           </div>
           <div className="InputPlace">
             <h3>Password</h3>
-            <MyInput placeholder=" Введіть пароль..." value={userData.password} onChange={e=>setUserData({...userData, password : e.target.value})} />
+            <BasicInput placeholder=" Введіть пароль..." value={userData.password} onChange={e=>setUserData({...userData, password : e.target.value})} />
           </div>
           {IsDataCorrect === false
           ?
@@ -66,9 +65,9 @@ const RegisterPage = () =>{
             <p><Link to="/">Авторизуватися</Link></p>
           </div>
           <div className="ButtonPlace">
-          <BigButton style ={{marginBottom:"15px"}} onClick={Register}>Зареєструватися</BigButton>
+          <BigButton onClick={Register}>Зареєструватися</BigButton>
           </div>
-        </form>
+        </div>
         
       );
 

@@ -5,7 +5,7 @@ const SmallButton = (props) =>{
 
 
     return(
-        <button className={Classes.MyButton} {...props}>
+        <button className={Classes.SmallButton} {...props}>
             {props.children}
         </button>
     )

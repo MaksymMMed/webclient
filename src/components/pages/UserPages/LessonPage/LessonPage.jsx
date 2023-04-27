@@ -1,33 +1,25 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
-import Lesson from "../../../UI/lesson/Lesson"
+import Lesson from "../../../UI/Lesson/User/Lesson"
 import axios from "axios";
 import { useEffect } from "react";
 const LessonPage = () =>
 {
 
-    const location = useLocation()
     const [lessons,setLessons] = useState([])
-    const [userData,setUserData] = useState(location.state?.userData ?? null) 
-    
+    const userData = JSON.parse(localStorage.getItem("UserData"))  
     useEffect(()=>{
-      if (userData === null) {
-        var item = JSON.parse(localStorage.getItem("UserData"))
-        setUserData(item)
-        getLessonsLocal(item)   
-      }
-      getLessonsNav()
+        getLessons()   
     },[])
-
+    
     const config = {
       headers: {
         'Content-Type': 'application/json'
       }
     };
 
-    const getLessonsLocal = async (item) =>{
+    const getLessons = async () =>{
       axios
-      .get('/api/Lesson/GetUserLessons', {params : {id: item.Id}} ,config)
+      .get('/api/Lesson/GetUserLessons', {params : {id: userData.Id}} ,config)
       .then(response => {
         setLessons(response.data);
         console.log(response.data)
@@ -36,18 +28,6 @@ const LessonPage = () =>
         console.log(error);
       });
     }
-
-    const getLessonsNav = async () =>{
-        axios
-        .get('/api/Lesson/GetUserLessons', {params : {id: userData.Id}} ,config)
-        .then(response => {
-          setLessons(response.data);
-          console.log(response.data)
-        })
-        .catch(error => {
-          console.log(error);
-        });
-      }
           
       return(
         <div>

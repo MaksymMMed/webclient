@@ -1,17 +1,27 @@
 import React, { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import MyInput from "../../../UI/input/MyInput";
+import BasicInput from "../../../UI/Input/BasicInput";
 import "./ProfilePage.css"
-import BigButton from "../../../UI/button/bigButton/BigButton"
+import BigButton from "../../../UI/Button/BigButton/BigButton"
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ProfilePage = () =>{
 
-    const location = useLocation()
-    const user = location.state
-
+    const userData = JSON.parse(localStorage.getItem("UserData")) 
     const Navigate = useNavigate()
-
-    useEffect(()=>console.log(user))
+    
+    const Logout = () =>{
+        axios
+        .post("/api/User/Logout")
+        .then(response =>{
+            if (response.status === 200) {
+                localStorage.removeItem("UserData")
+                Navigate("/")
+            }})
+        .catch(error => {
+            console.log(error)
+        })
+    }
 
     const OpenAdminPanel = (e) =>{
         e.preventDefault()
@@ -23,16 +33,20 @@ const ProfilePage = () =>{
         <div className="ProfilePage">
             <div className="InputsPlace">
                 <p style={{width:"120px"}}>Login:</p>
-                <MyInput disabled style ={{marginLeft:"5px"}} value={user.Login}/>
+                <BasicInput disabled style ={{marginLeft:"5px"}} value={userData.Login}/>
             </div>
             <div className="InputsPlace">
                 <p style={{width:"120px"}}>Email:</p>
-                <MyInput disabled style ={{marginLeft:"5px"}} value={user.Email}/>
+                <BasicInput disabled style ={{marginLeft:"5px"}} value={userData.Email}/>
             </div>   
-            {user.Role === "admin"
-             ? <BigButton style={{marginBottom:"5px",marginLeft:"15px"}} onClick={OpenAdminPanel}>Адміністрування</BigButton>
+            {userData.Role === "admin"
+             ? <BigButton style={{marginBottom:"5px",marginLeft:"auto",marginRight:"auto"}} onClick={OpenAdminPanel}>Адміністрування</BigButton>
              : null
-            }         
+            }
+            <div className="ControlButtons">
+            <BigButton style={{width: "40%"}} onClick={Logout}>Вийти з профілю</BigButton>   
+            <BigButton style={{width: "40%"}} onClick={Logout}>Вийти з профілю</BigButton>   
+            </div>
         </div>
     )
 }

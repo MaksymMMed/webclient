@@ -4,17 +4,21 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider,} from "react-router-dom";
 
-import LoginForm from './components/pages/GeneralPages/LoginPage/LoginForm';
-import RegisterPage from './components/pages/GeneralPages/RegisterPage/RegisterPage';
-import MainPage from './components/pages/GeneralPages/MainPage/MainPage';
-import ExercisePage from './components/pages/UserPages/ExercisePage/ExercisesPage';
-import LessonPage from './components/pages/UserPages/LessonPage/LessonPage';
-import ProfilePage from './components/pages/GeneralPages/ProfilePage/ProfilePage';
-import NotFoundPage from './components/pages/GeneralPages/NotFoundPage/NotFoundPage';
-import AdminExercisePage from './components/pages/AdminPages/AdminExercisePage/AdminExercisePage';
-import AddLessonPage from './components/pages/AdminPages/AddLessonPage/AddLessonPage';
-import AdminLessonsPage from './components/pages/AdminPages/AdminLessonPage/AdminLessonsPage';
-import AdminMainPage from './components/pages/GeneralPages/MainPage/AdminMainPage';
+import LoginForm from './components/Pages/GeneralPages/LoginPage/LoginForm';
+import RegisterPage from './components/Pages/GeneralPages/RegisterPage/RegisterPage';
+import MainPage from './components/Pages/GeneralPages/MainPage/MainPage';
+import ExercisePage from './components/Pages/UserPages/ExercisePage/ExercisesPage';
+import LessonPage from './components/Pages/UserPages/LessonPage/LessonPage';
+import ProfilePage from './components/Pages/GeneralPages/ProfilePage/ProfilePage';
+import NotFoundPage from './components/Pages/GeneralPages/NotFoundPage/NotFoundPage';
+import AdminExercisePage from './components/Pages/AdminPages/AdminExercisePage/AdminExercisePage';
+import AddLessonPage from './components/Pages/AdminPages/AddLessonPage/AddLessonPage';
+import AdminLessonsPage from './components/Pages/AdminPages/AdminLessonPage/AdminLessonsPage';
+import AdminMainPage from './components/Pages/GeneralPages/MainPage/AdminMainPage';
+import AddGrammar from './components/Pages/AdminPages/AddExercisePage/AddGrammar/AddGrammar'; 
+
+
+
 
 const router = createBrowserRouter([
   {
@@ -52,6 +56,10 @@ const router = createBrowserRouter([
   {
     path:"/AdminLessonsPage",
     element: <AdminMainPage><AdminLessonsPage/></AdminMainPage>
+  },
+  {
+    path:"/AddGrammar",
+    element: <AdminMainPage><AddGrammar/></AdminMainPage>
   },
   ]);
 

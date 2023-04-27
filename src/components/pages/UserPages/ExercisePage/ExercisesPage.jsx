@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
-import GrammarExercise from "../../../UI/exercise/grammar/GrammarExercise";
-import TranslateExercise from "../../../UI/exercise/translate/TranslateExercise";
-import VoiceExercise from "../../../UI/exercise/voice/VoiceExercise";
+import GrammarExercise from "../../../UI/Exercise/Grammar/User/GrammarExercise";
+import TranslateExercise from "../../../UI/Exercise/Translate/User/TranslateExercise";
+import VoiceExercise from "../../../UI/Exercise/Voice/User/VoiceExercise";
 
 const ExercisePage = () => {
 
     const location = useLocation()
-    const ExerciseData = location.state.lesson
-    
+    const [ExerciseData,SetExerciseData] = useState(location.state.lesson)
+     
     return(
         <div>
             <div className="ExercisesPlace">

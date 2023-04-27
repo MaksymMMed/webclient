@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Classes from "./TranslateExercise.module.css"
-import BigButton from "../../button/bigButton/BigButton";
+import BigButton from "../../../Button/BigButton/BigButton";
 import axios from "axios";
-import MyInput from "../../input/MyInput";
+import BasicInput from "../../../Input/BasicInput";
 const TranslateExercise = ({Exercise}) =>{
 
     const [done,setDone] = useState(Exercise.Status)
@@ -52,22 +52,22 @@ const TranslateExercise = ({Exercise}) =>{
               <div>
                 {done
                 ?
-                <MyInput value = {Exercise.TranslateExercise.Answer} disabled style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"lime"}}/>
+                <BasicInput value = {Exercise.TranslateExercise.Answer} disabled style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"lime"}}/>
                 :
-                <MyInput placeholder ={"Input translated text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px"}} onChange={e=>doubleFunc(e)}/>
+                <BasicInput placeholder ={"Input translated text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px"}} onChange={e=>doubleFunc(e)}/>
                 }
                 </div>
               : 
               <div>
                 {done
                 ?
-                <MyInput value = {Exercise.TranslateExercise.Answer} disabled style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"lime"}}/>
+                <BasicInput value = {Exercise.TranslateExercise.Answer} disabled style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"lime"}}/>
                 :
-                <MyInput placeholder ={"Input translated text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"red"}} onChange={e=>doubleFunc(e)}/>
+                <BasicInput placeholder ={"Input translated text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"red"}} onChange={e=>doubleFunc(e)}/>
                 }
                 </div>
               }
-            <BigButton style={{marginTop:"15px",marginLeft:"10px",marginBottom:"10px"}} type="submit" onClick={check}>Check answer</BigButton>
+            <BigButton style={{marginTop:"15px",marginLeft:"10px",marginBottom:"10px"}} onClick={check}>Check answer</BigButton>
         </div>
     )   
 }

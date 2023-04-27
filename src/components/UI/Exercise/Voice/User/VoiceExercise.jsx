@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Classes from "./VoiceExercise.module.css"
-import SmallButton from "../../button/smallButton/SmallButton";
-import BigButton from "../../button/bigButton/BigButton";
+import SmallButton from "../../../Button/SmallButton/SmallButton";
+import BigButton from "../../../Button/BigButton/BigButton";
 import axios from "axios";
-import MyInput from "../../input/MyInput";
+import BasicInput from "../../../Input/BasicInput";
 
 const VoiceExercise = ({Exercise}) =>{
 
@@ -17,7 +17,6 @@ const VoiceExercise = ({Exercise}) =>{
           'Content-Type': 'application/json'
         }
       };
-
 
     const check = async (e) => {
         if (done) {
@@ -34,7 +33,7 @@ const VoiceExercise = ({Exercise}) =>{
               console.log("success")
               setDone(response.data)
               setStatusLabel(false)
-            }        
+            }
           })
           .catch(error => {
             console.log(error);
@@ -46,48 +45,62 @@ const VoiceExercise = ({Exercise}) =>{
       setRecognizedText(e.target.value)
     }
 
-    const sayText = async (e) => {
+    const recognition = new window.webkitSpeechRecognition();
+    
+    recognition.onresult = (event) => {
+      const last = event.results.length - 1;
+      const text = event.results[last][0].transcript;
+      console.log(text)
+      setRecognizedText(text)
+    };
+
+    const startRecognition = () => {
+      recognition.start();
+    };
+
+    const sayText =  (e) => {
         e.preventDefault()
-        axios
-        .post("/api/VoiceExercise/SayText",JSON.stringify(Exercise.VoiceExercise.TextToSay), config)
-        .then(response => {
-            if (response.status === 200)
-            {
-              console.log("success")
-            }        
-          })
-          .catch(error => {
-            console.log(error);
-          });
+        const utterance = new SpeechSynthesisUtterance(Exercise.VoiceExercise.TextToSay);
+        utterance.lang = "en-US"
+        speechSynthesis.speak(utterance);
     }
 
     return(
-        <div className={Classes.Exercise} >
+        <div className={Classes.Exercise}>
             <div className={Classes.Info}>
-              <p>Exercise Name : {Exercise.VoiceExercise.Name}</p>
+              <p>Exercise Name: {Exercise.VoiceExercise.Name}</p>
+              {Exercise.VoiceExercise.Type === 1 ? <p>Text to say: {Exercise.VoiceExercise.TextToSay}</p> : null}
+              
             </div>
             <div className={Classes.ButtonsPlace}>
+
+            {Exercise.VoiceExercise.Type === 0 ?
             <SmallButton onClick={sayText}>Listen text</SmallButton>
+            : 
+            <SmallButton onClick={startRecognition}>Say text</SmallButton>
+            }
+
             <SmallButton onClick ={() => setHint(!hint)}>See hint</SmallButton>
+            
             </div>
-            {hint === true ? <p style={{marginLeft:"9px"}}>Hint : {Exercise.VoiceExercise.TextToSay}</p> : null}
-            {statusLabel === true 
+            {hint === true ? <p style={{marginLeft:"9px"}}>Hint : {Exercise.VoiceExercise.Type === 0 ? Exercise.VoiceExercise.TextToSay : Exercise.VoiceExercise.Answer}</p> : null}
+            {statusLabel === true
             ?
             <div>
               {done
               ?
-              <MyInput value = {Exercise.VoiceExercise.Answer} disabled style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"lime"}}/>
+              <BasicInput value = {Exercise.VoiceExercise.Answer} disabled style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"lime"}}/>
               :
-              <MyInput placeholder ={"Input listened text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px"}} onChange={e=>doubleFunc(e)}/>
+              <BasicInput placeholder ={"Input listened text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px"}} onChange={e=>doubleFunc(e)}/>
               }
               </div>
             : 
             <div>
               {done
               ?
-              <MyInput value = {Exercise.VoiceExercise.Answer} disabled style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"lime"}}/>
+              <BasicInput value = {Exercise.VoiceExercise.Answer} disabled style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"lime"}}/>
               :
-              <MyInput placeholder ={"Input listened text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"red"}} onChange={e=>doubleFunc(e)}/>
+              <BasicInput placeholder ={"Input listened text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"red"}} onChange={e=>doubleFunc(e)}/>
               }
               </div>
             }

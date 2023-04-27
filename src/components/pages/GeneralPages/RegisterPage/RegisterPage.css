@@ -2,10 +2,11 @@
     max-width: 400px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10 0px;
+    margin-top: 10px;
     background-color: whitesmoke;
     border-radius: 15px;
     text-align: center;
+    padding-bottom: 10px;
 }
 
 .InputPlace{
@@ -25,4 +26,7 @@
 
 .ButtonPlace {
     margin-top: 15px;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }

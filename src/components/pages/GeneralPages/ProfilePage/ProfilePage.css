@@ -8,10 +8,19 @@
     margin-right: auto;
     width: 500px;
     border-radius: 10px;
+    padding-bottom: 15px;
 }
 
 .InputsPlace{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.ControlButtons{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
 }

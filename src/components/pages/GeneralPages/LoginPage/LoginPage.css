@@ -6,6 +6,7 @@
     background-color: whitesmoke;
     border-radius: 15px;
     text-align: center;
+    padding-bottom: 10px;
 }
 
 .InputPlace{
@@ -25,4 +26,7 @@
 
 .ButtonPlace {
     margin-top: 15px;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
