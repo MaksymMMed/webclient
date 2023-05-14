@@ -13,6 +13,7 @@
 
 .InputsPlace{
     display: flex;
+    padding-left: 15px;
     align-items: center;
     justify-content: space-between;
 }

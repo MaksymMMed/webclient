@@ -6,3 +6,9 @@
     border-radius: 5px;
     padding-bottom: 8px;
 }
+
+.SmallButtonsPlace{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}

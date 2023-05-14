@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import AdminLesson from "../../../UI/Lesson/Admin/AdminLesson"
 import BigButton from "../../../UI/Button/BigButton/BigButton";
 import { useNavigate } from "react-router-dom";
+import "./AdminLessonPage.css"
 
 const AdminLessonsPage = () =>
 {
@@ -14,6 +15,11 @@ const AdminLessonsPage = () =>
     };
 
     const [Lessons,SetLessons] = useState([])
+
+    const DeleteLesson = (Lesson) =>{
+        SetLessons(Lessons.filter(item=>item.Id !== Lesson.Id))
+        console.log("success")
+    }
 
     const Navigate = useNavigate()
 
@@ -46,13 +52,14 @@ const AdminLessonsPage = () =>
 
     return(
         <div>
-            <div style={{backgroundColor:"whitesmoke",maxWidth:"fit-content",
-            marginTop:"15px",padding:"10px 40px 10px 40px",marginLeft:"auto",marginRight:"auto",borderRadius:"5px"}}>
+            <div className="AddLessonButtonPlace">
             <BigButton style ={{display:"block", marginLeft:"auto",marginRight:"auto"}} onClick={AddLesson}>Додати новий урок</BigButton>
             </div>
+            <div className="LessonsPlace">
             {Lessons.map(item=>
-            <AdminLesson key={item.Id} Lesson={item}/>
+            <AdminLesson DeleteLesson={DeleteLesson} key={item.Id} Lesson={item}/>
             )}
+            </div>
         </div>
     )
 

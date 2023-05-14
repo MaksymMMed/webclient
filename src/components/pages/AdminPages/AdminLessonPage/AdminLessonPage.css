@@ -1,0 +1,14 @@
+.LessonsPlace{
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+.AddLessonButtonPlace{
+    background-color: whitesmoke;
+    padding: 10px 40px 10px 40px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    max-width: fit-content;
+}

@@ -1,47 +1,31 @@
 import React, { useState } from "react";
-import BasicInput from "../../../../UI/Input/BasicInput"
-import "./AddGrammar.css"
-import BigButton from "../../../../UI/Button/BigButton/BigButton"
+import BasicInput from "../../../../UI/Input/BasicInput";
+import BigButton from "../../../../UI/Button/BigButton/BigButton";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
-const AddGrammar = () =>{
+import "./UpdateGrammar.css"
+
+const UpdateGrammar = () => {
     
-    const [Grammar,SetGrammar] = useState({Name:"Choose right verb",Answer:"Have",Question:"You _ a dog?",LessonId:0,Variables: ["Have","How"]})
-
-
-    const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      };
     const location = useLocation()
-    const Id = location.state.LessonId
+    const [Grammar,SetGrammar] = useState(location.state)
     const Navigate = useNavigate()
-    
-    const AddGrammarExercise = (e) =>{
-        let grammar = Grammar
-        grammar = {...grammar,LessonId:Id}
+
+    const UpdateGrammarExercise = (e) =>{
         e.preventDefault()
-        axios
-        .post("/api/GrammarExercise/AddGrammarExercise",JSON.stringify(grammar),config)
-        .then(response =>{
-            if (response.status===200) {
-                SetGrammar({Name:"",Answer:"",Question:"",LessonId:0,Variables: []})
-            }
-        })
-    }
-    
+        console.log(Grammar)
+    }  
+
     const InsertVariables = (e)=>{
         let text = e.target.value
         text = text.split(",")
         SetGrammar({...Grammar,Variables:text})
     }
 
-    return(
+        return(
         <div>
         <h1><p style={{marginLeft:"50px"}} onClick={()=>Navigate(-1)}>Повернутися до вправ</p></h1>
 
-        <div className="AddGrammarExercisePage">
+        <div className="UpdateGrammarExercisePage">
             <h3>Exercise name:</h3>
             <BasicInput value={Grammar.Name} onChange = {e=>SetGrammar({...Grammar,Name:e.target.value})} placeholder={"Input exercise name..."}/>
 
@@ -54,13 +38,13 @@ const AddGrammar = () =>{
             <h3>Variables</h3>
             <BasicInput value={Grammar.Variables} onChange = {e=>InsertVariables(e)}  placeholder={"Input variables separated by coma..."}/>
             
-            <BigButton style={{display:"block",marginRight:"auto",marginLeft:"auto",marginTop:"15px"}} onClick={AddGrammarExercise}>
-                Додати вправу
+            <BigButton style={{display:"block",marginRight:"auto",marginLeft:"auto",marginTop:"15px"}} onClick={UpdateGrammarExercise}>
+                Оновити вправу
             </BigButton>
         </div>
         </div>
-
     )
+
 }
 
-export default AddGrammar
+export default UpdateGrammar

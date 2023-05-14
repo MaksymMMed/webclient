@@ -16,6 +16,7 @@ import AddLessonPage from './components/Pages/AdminPages/AddLessonPage/AddLesson
 import AdminLessonsPage from './components/Pages/AdminPages/AdminLessonPage/AdminLessonsPage';
 import AdminMainPage from './components/Pages/GeneralPages/MainPage/AdminMainPage';
 import AddGrammar from './components/Pages/AdminPages/AddExercisePage/AddGrammar/AddGrammar'; 
+import UpdateGrammar from './components/Pages/AdminPages/UpdateExercisePage/UpdateGrammar/UpdateGrammar';
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
   {
     path:"/AddGrammar",
     element: <AdminMainPage><AddGrammar/></AdminMainPage>
+  },
+  {
+    path:"/UpdateGrammar",
+    element: <AdminMainPage><UpdateGrammar/></AdminMainPage>
   },
   ]);
 

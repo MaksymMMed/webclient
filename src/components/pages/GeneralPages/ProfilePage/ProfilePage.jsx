@@ -32,19 +32,18 @@ const ProfilePage = () =>{
     return(
         <div className="ProfilePage">
             <div className="InputsPlace">
-                <p style={{width:"120px"}}>Login:</p>
-                <BasicInput disabled style ={{marginLeft:"5px"}} value={userData.Login}/>
+                <p style={{width:"80px"}}>Login:</p>
+                <BasicInput disabled style ={{width:"80%",marginRight:"8px"}} value={userData.Login}/>
             </div>
             <div className="InputsPlace">
-                <p style={{width:"120px"}}>Email:</p>
-                <BasicInput disabled style ={{marginLeft:"5px"}} value={userData.Email}/>
-            </div>   
+                <p style={{width:"80px"}}>Email:</p>
+                <BasicInput disabled style ={{marginRight:"8px",width:"80%"}} value={userData.Email}/>
+            </div>  
+            <div className="ControlButtons">
             {userData.Role === "admin"
-             ? <BigButton style={{marginBottom:"5px",marginLeft:"auto",marginRight:"auto"}} onClick={OpenAdminPanel}>Адміністрування</BigButton>
+             ? <BigButton style={{width:"40%"}} onClick={OpenAdminPanel}>Адміністрування</BigButton>
              : null
             }
-            <div className="ControlButtons">
-            <BigButton style={{width: "40%"}} onClick={Logout}>Вийти з профілю</BigButton>   
             <BigButton style={{width: "40%"}} onClick={Logout}>Вийти з профілю</BigButton>   
             </div>
         </div>

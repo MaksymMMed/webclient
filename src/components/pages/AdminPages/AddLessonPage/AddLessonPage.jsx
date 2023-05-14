@@ -36,6 +36,8 @@ const AddLessonPage = () =>{
     }
 
     return(
+        <div>
+        <h1><p style={{marginLeft:"50px"}} onClick={()=>Navigate(-1)}>Повернутися до уроків</p></h1>
         <div className="AddLessonPage">
             <h3>Lesson Name :</h3>
             <BasicInput style ={{marginTop:"15px"}} placeholder="Lesson Name..." value ={NewLesson.LessonName} onChange={e=>SetNewLesson({...NewLesson,LessonName:e.target.value})}/>
@@ -43,6 +45,8 @@ const AddLessonPage = () =>{
             <BasicInput style ={{marginTop:"15px"}} placeholder="Lesson Description..." value={NewLesson.LessonDescription} onChange={e=>SetNewLesson({...NewLesson,LessonDescription:e.target.value})}/>
             <BigButton style ={{marginTop:"50px"}} onClick={AddNewLesson}>Додати новий урок</BigButton>
         </div>
+        </div>
+
     )
 }
 
