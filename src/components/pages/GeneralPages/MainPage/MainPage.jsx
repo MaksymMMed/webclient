@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import './MainPage.css'
 import { useEffect } from "react";
 import SmallButton from "../../../UI/Button/SmallButton/SmallButton"
-
 import { useNavigate } from "react-router-dom";
 import NotFoundPage from "../NotFoundPage/NotFoundPage";
 

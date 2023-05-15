@@ -16,20 +16,19 @@ const AdminGrammarExercise = ({Exercise,DeleteGrammarExercise}) =>{
         setModalIsOpen(!modalIsOpen)
     }
 
-    const DeleteLessonAxios = (e) =>{
+    const DeleteGrammar = (e) =>{
         e.preventDefault()
-        /*axios
-        .delete("api/Grammar/DeleteGrammarExerciseById",{params:{id:ExerciseId}})
+        axios
+        .delete("api/GrammarExercise/DeleteGrammarExerciseById",{params:{id:ExerciseId}})
         .then(response=>
             {
             if (response.status === 200) {
-              console.log("success 1")
-
             }})
             .catch(error=>{
                 console.log(error)
-            })*/
-            DeleteGrammarExercise(_Exercise)
+            })
+            DeleteGrammarExercise(Exercise)
+
         ModalState()
     }
 
@@ -45,7 +44,7 @@ const AdminGrammarExercise = ({Exercise,DeleteGrammarExercise}) =>{
                 <ReactModal style={{overlay:{width:"630px",height:"230px",marginRight:"auto",marginLeft:"auto",marginTop:"150px"}}} isOpen={modalIsOpen} onRequestClose={ModalState}>
                     <h2>Ви впевнені що хочете видалити елемент?</h2>
                     <div style={{display:"flex",justifyContent:"space-between",padding:"0 10px 0 10px"}}>
-                    <SmallButton onClick={DeleteLessonAxios}>Так</SmallButton>
+                    <SmallButton onClick={DeleteGrammar}>Так</SmallButton>
                     <SmallButton onClick={ModalState}>Ні</SmallButton>
                     </div>
                 </ReactModal>

@@ -22,7 +22,6 @@ const LessonPage = () =>
       .get('/api/Lesson/GetUserLessons', {params : {id: userData.Id}} ,config)
       .then(response => {
         setLessons(response.data);
-        console.log(response.data)
       })
       .catch(error => {
         console.log(error);

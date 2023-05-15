@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation,useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import GrammarExercise from "../../../UI/Exercise/Grammar/User/GrammarExercise";
 import TranslateExercise from "../../../UI/Exercise/Translate/User/TranslateExercise";
 import VoiceExercise from "../../../UI/Exercise/Voice/User/VoiceExercise";
@@ -7,9 +7,8 @@ import "./ExercisePage.css"
 
 const ExercisePage = () => {
 
-    const location = useLocation()
     const Navigate = useNavigate()
-    const [ExerciseData,SetExerciseData] = useState(location.state.lesson)
+    const [ExerciseData,SetExerciseData] = useState(JSON.parse(localStorage.getItem("LessonData")))
     
     return(
         <div>

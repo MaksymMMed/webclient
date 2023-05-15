@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Classes from "./TranslateExercise.module.css"
 import BigButton from "../../../Button/BigButton/BigButton";
 import axios from "axios";
 import BasicInput from "../../../Input/BasicInput";
 const TranslateExercise = ({Exercise}) =>{
 
+    const [lessonData,setLessonData]  = useState(JSON.parse(localStorage.getItem("LessonData")))
     const [done,setDone] = useState(Exercise.Status)
     const [statusLabel,setStatusLabel] = useState(true)
     const [translatedText,setTranslatedText] = useState("")
@@ -31,15 +32,26 @@ const TranslateExercise = ({Exercise}) =>{
         .then(response => {
             if (response.status === 200)
             {
-              console.log("success")
               setDone(response.data)
               setStatusLabel(false)
+              if (response.data === true) {
+                let _Exercise = Exercise
+                _Exercise.Status = true
+                var _Translate = lessonData.TranslateExercises.filter(p=>p.IdExercise !== exerciseData.exerciseId)
+                _Translate.push(_Exercise)
+                
+                setLessonData({...lessonData, TranslateExercises:_Translate})
             }        
+          }
           })
           .catch(error => {
             console.log(error);
           });
     }
+
+    useEffect(() => {
+      localStorage.setItem("LessonData", JSON.stringify(lessonData));
+    }, [lessonData]);
 
     return(
         <div className={Classes.Exercise}>

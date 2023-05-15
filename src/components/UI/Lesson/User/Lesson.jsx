@@ -8,9 +8,9 @@ const Lesson = ({lesson}) =>{
     const Navigate = useNavigate();
 
     const openLesson = async(e) =>{
-      console.log(lesson);
       e.preventDefault();
-      Navigate("/ExercisesPage",{state : {lesson:lesson,userData:JSON.parse(localStorage.getItem("UserData"))}})
+      localStorage.setItem("LessonData",JSON.stringify(lesson))
+      Navigate("/ExercisesPage")
     }
     
     return(

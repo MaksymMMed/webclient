@@ -6,15 +6,18 @@ import AdminTranslateExercise from "../../../UI/Exercise/Translate/Admin/AdminTr
 import BigButton from "../../../UI/Button/BigButton/BigButton";
 import "./AdminExercisePage.css"
 
-
 const AdminExercisePage = () =>{
     const location = useLocation()
     const [ExerciseData,SetExerciseData]  = useState(location.state.Lesson)
     const LessonId = location.state.Lesson.Id
     const Navigate = useNavigate()
 
+    console.log(ExerciseData.GrammarExercises)
+
+
     const DeleteGrammarExercise = (Exercise) =>{
-        SetExerciseData(ExerciseData.GrammarExercises.filter(item=>item.Id !== Exercise.Id))
+        SetExerciseData(...ExerciseData,ExerciseData.GrammarExercises.filter(item=>item.Id !== Exercise.Id))
+        console.log(ExerciseData.GrammarExercises)
     }
 
     return(

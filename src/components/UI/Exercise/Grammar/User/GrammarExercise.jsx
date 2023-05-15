@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect  } from "react";
 import Classes from "./GrammarExercise.module.css"
 import SmallButton from "../../../Button/SmallButton/SmallButton";
 import BigButton from "../../../Button/BigButton/BigButton";
@@ -6,6 +6,7 @@ import axios from "axios";
 
 const GrammarExercise = ({Exercise}) =>{
 
+    const [lessonData,setLessonData]  = useState(JSON.parse(localStorage.getItem("LessonData")))
     const [done,setDone] = useState(Exercise.Status)
     const [statusLabel,setStatusLabel] = useState(true)
     const [selectedWord,setSelectedWord] = useState("")
@@ -18,30 +19,39 @@ const GrammarExercise = ({Exercise}) =>{
     const setWord = (word) =>{
         setSelectedWord(word)
         setStatusLabel(true)
-        console.log(word)
     }
 
     const check = async (e) => {
-        if (done === true) {
-          return
-        }
+      if (done) {
+        return
+      }
         e.preventDefault()
         var exerciseData = {exerciseId:Exercise.IdExercise, userId:Exercise.IdUser,Verb: selectedWord}  
-        console.log(exerciseData)      
         axios
         .post("/api/GrammarExercise/CheckGrammar",JSON.stringify(exerciseData), config)
         .then(response => {
             if (response.status === 200)
             {
-              console.log("success")
               setDone(response.data)
               setStatusLabel(false)
-            }        
+              if (response.data === true) {
+              let _Exercise = Exercise
+              _Exercise.Status = true
+              var _Grammar = lessonData.GrammarExercises.filter(p=>p.IdExercise !== exerciseData.exerciseId)
+              _Grammar.push(_Exercise)
+              
+              setLessonData({...lessonData, GrammarExercises:_Grammar})
+            }
+            }
           })
           .catch(error => {
             console.log(error);
           });
     }
+    
+    useEffect(() => {
+      localStorage.setItem("LessonData", JSON.stringify(lessonData));
+    }, [lessonData]);
 
     return(
         <div className={Classes.Exercise}>

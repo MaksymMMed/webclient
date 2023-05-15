@@ -23,7 +23,6 @@ const LoginForm = () =>{
     },[])
 
     const LogIn = (e) =>{
-      console.log(userData);
       e.preventDefault();
       axios.post
       ('/api/User/SignIn',JSON.stringify(userData),config)

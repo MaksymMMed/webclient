@@ -30,6 +30,8 @@ const ProfilePage = () =>{
 
     
     return(
+        <div>
+        <h1><p style={{marginLeft:"25px"}} onClick={()=>Navigate(-1)} >Назад</p></h1>
         <div className="ProfilePage">
             <div className="InputsPlace">
                 <p style={{width:"80px"}}>Login:</p>
@@ -46,6 +48,7 @@ const ProfilePage = () =>{
             }
             <BigButton style={{width: "40%"}} onClick={Logout}>Вийти з профілю</BigButton>   
             </div>
+        </div>
         </div>
     )
 }

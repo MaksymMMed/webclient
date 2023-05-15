@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Classes from "./VoiceExercise.module.css"
 import SmallButton from "../../../Button/SmallButton/SmallButton";
 import BigButton from "../../../Button/BigButton/BigButton";
@@ -7,6 +7,7 @@ import BasicInput from "../../../Input/BasicInput";
 
 const VoiceExercise = ({Exercise}) =>{
 
+    const [lessonData,setLessonData]  = useState(JSON.parse(localStorage.getItem("LessonData")))
     const [done,setDone] = useState(Exercise.Status)
     const [statusLabel,setStatusLabel] = useState(true)
     const [hint,setHint] = useState(false)
@@ -30,15 +31,26 @@ const VoiceExercise = ({Exercise}) =>{
         .then(response => {
             if (response.status === 200)
             {
-              console.log("success")
               setDone(response.data)
               setStatusLabel(false)
+              if (response.data === true) {
+                let _Exercise = Exercise
+                _Exercise.Status = true
+                var _Voice = lessonData.VoiceExercises.filter(p=>p.IdExercise !== exerciseData.exerciseId)
+                _Voice.push(_Exercise)
+                
+                setLessonData({...lessonData, VoiceExercises:_Voice})
+            }
             }
           })
           .catch(error => {
             console.log(error);
           });
     }
+
+    useEffect(() => {
+      localStorage.setItem("LessonData", JSON.stringify(lessonData));
+    }, [lessonData]);
 
     const doubleFunc = (e) =>{
       setStatusLabel(true)
