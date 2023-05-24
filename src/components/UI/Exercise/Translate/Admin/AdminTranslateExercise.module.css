@@ -11,3 +11,10 @@
 .Info{
     margin-left: 8px;
 }
+
+.SmallButtonsPlace{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 0 10px 3px 5px;
+}

@@ -1,0 +1,9 @@
+.AddTranslateExercisePage{
+    max-width: fit-content;
+    background-color: whitesmoke;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 5px 10px 5px;
+    margin-top: 15px;
+    border-radius: 10px;
+}

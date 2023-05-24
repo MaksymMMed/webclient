@@ -15,10 +15,11 @@ const AddGrammar = () =>{
         }
       };
     const location = useLocation()
-    const Id = location.state.LessonId
+    const Id = location.state
     const Navigate = useNavigate()
     
     const AddGrammarExercise = (e) =>{
+        var LessonData = JSON.parse(localStorage.getItem("AdminLessonData"))
         let grammar = Grammar
         grammar = {...grammar,LessonId:Id}
         e.preventDefault()
@@ -26,9 +27,14 @@ const AddGrammar = () =>{
         .post("/api/GrammarExercise/AddGrammarExercise",JSON.stringify(grammar),config)
         .then(response =>{
             if (response.status===200) {
+                LessonData.GrammarExercises.push(grammar)
+                localStorage.setItem("AdminLessonData",JSON.stringify(LessonData))
                 SetGrammar({Name:"",Answer:"",Question:"",LessonId:0,Variables: []})
             }
         })
+        .catch(error =>{
+            console.log(error)
+        });
     }
     
     const InsertVariables = (e)=>{

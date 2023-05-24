@@ -4,7 +4,7 @@ import Classes from './BasicInput.module.css'
 const BasicInput = (props) =>
 {
     return(
-            <input className= {Classes.BasicInput} {...props} type="text"></input>
+            <input  className= {Classes.BasicInput} {...props} type="text"></input>
     )
 }
 

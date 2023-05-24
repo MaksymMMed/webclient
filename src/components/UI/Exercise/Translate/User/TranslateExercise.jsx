@@ -39,8 +39,8 @@ const TranslateExercise = ({Exercise}) =>{
                 _Exercise.Status = true
                 var _Translate = lessonData.TranslateExercises.filter(p=>p.IdExercise !== exerciseData.exerciseId)
                 _Translate.push(_Exercise)
-                
-                setLessonData({...lessonData, TranslateExercises:_Translate})
+                lessonData.TranslateExercises=_Translate
+                localStorage.setItem("LessonData", JSON.stringify(lessonData));
             }        
           }
           })
@@ -48,10 +48,6 @@ const TranslateExercise = ({Exercise}) =>{
             console.log(error);
           });
     }
-
-    useEffect(() => {
-      localStorage.setItem("LessonData", JSON.stringify(lessonData));
-    }, [lessonData]);
 
     return(
         <div className={Classes.Exercise}>

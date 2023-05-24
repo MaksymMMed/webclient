@@ -27,7 +27,7 @@ const MainPage = (props) =>{
           {UserData !== null ?
             <div>
             <header>
-                <h1>Lang4Easy</h1>
+                <h1 onClick={()=>Navigate("/LessonsPage")}>Lang4Easy</h1>
                 <SmallButton style={{marginTop:"25px"}} onClick={openProfile}>Profile</SmallButton>
             </header>
             {props.children}

@@ -7,10 +7,10 @@ import { useNavigate } from "react-router-dom";
 
 const AdminGrammarExercise = ({Exercise,DeleteGrammarExercise}) =>{
     
+    const [lessonData,setLessonData] = useState(JSON.parse(localStorage.getItem("AdminLessonData")))
     const [_Exercise,setExercise] = useState(Exercise)
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const Navigate = useNavigate()
-    const ExerciseId = _Exercise.Id
 
     const ModalState = () =>{
         setModalIsOpen(!modalIsOpen)
@@ -19,18 +19,21 @@ const AdminGrammarExercise = ({Exercise,DeleteGrammarExercise}) =>{
     const DeleteGrammar = (e) =>{
         e.preventDefault()
         axios
-        .delete("api/GrammarExercise/DeleteGrammarExerciseById",{params:{id:ExerciseId}})
+        .delete("api/GrammarExercise/DeleteGrammarExerciseById",{params:{id:Exercise.Id}})
         .then(response=>
             {
             if (response.status === 200) {
+                var _Grammar = lessonData.GrammarExercises.filter(p=>p.Id !== _Exercise.Id)
+                lessonData.GrammarExercises = _Grammar
+                localStorage.setItem("AdminLessonData", JSON.stringify(lessonData));
+                ModalState()
+                DeleteGrammarExercise(_Exercise)
+    
             }})
             .catch(error=>{
                 console.log(error)
             })
-            DeleteGrammarExercise(Exercise)
-
-        ModalState()
-    }
+        }
 
     return(
         <div style={{padding:"1px 0 5px 5px"}} className={Classes.Exercise}>

@@ -1,4 +1,4 @@
-import React, { useState,useEffect  } from "react";
+import React, { useState  } from "react";
 import Classes from "./GrammarExercise.module.css"
 import SmallButton from "../../../Button/SmallButton/SmallButton";
 import BigButton from "../../../Button/BigButton/BigButton";
@@ -39,19 +39,14 @@ const GrammarExercise = ({Exercise}) =>{
               _Exercise.Status = true
               var _Grammar = lessonData.GrammarExercises.filter(p=>p.IdExercise !== exerciseData.exerciseId)
               _Grammar.push(_Exercise)
-              
-              setLessonData({...lessonData, GrammarExercises:_Grammar})
-            }
-            }
+              lessonData.GrammarExercises = _Grammar
+              localStorage.setItem("LessonData", JSON.stringify(lessonData));
+            }}
           })
           .catch(error => {
             console.log(error);
           });
     }
-    
-    useEffect(() => {
-      localStorage.setItem("LessonData", JSON.stringify(lessonData));
-    }, [lessonData]);
 
     return(
         <div className={Classes.Exercise}>

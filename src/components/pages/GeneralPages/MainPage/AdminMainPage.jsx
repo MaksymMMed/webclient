@@ -26,7 +26,7 @@ const AdminMainPage = (props) =>{
           {UserData !== null && UserData.Role === "admin" ?
             <div>
             <header>
-                <h1>Lang4Easy</h1>
+                <h1 onClick={()=>Navigate("/LessonsPage")}>Lang4Easy</h1>
                 <SmallButton style={{width:"300px",marginTop:"25px"}} onClick={openProfile}>Profile</SmallButton>
             </header>
             {props.children}

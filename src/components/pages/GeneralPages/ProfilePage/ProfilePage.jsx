@@ -15,7 +15,7 @@ const ProfilePage = () =>{
         .post("/api/User/Logout")
         .then(response =>{
             if (response.status === 200) {
-                localStorage.removeItem("UserData")
+                localStorage.clear()
                 Navigate("/")
             }})
         .catch(error => {

@@ -18,7 +18,11 @@ const AdminLesson = ({Lesson,DeleteLesson}) =>
 
     const OpenLesson = (e) =>{
         e.preventDefault()
-        Navigate("/AdminExercisePage",{state : {Lesson:Lesson}})
+        localStorage.setItem("AdminLessonData",JSON.stringify(Lesson))
+        Navigate("/AdminExercisePage")
+        //Navigate("/AdminExercisePage",{state : {Lesson:Lesson}})
+
+
     }
 
     const ModalState = () =>{

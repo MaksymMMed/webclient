@@ -38,19 +38,14 @@ const VoiceExercise = ({Exercise}) =>{
                 _Exercise.Status = true
                 var _Voice = lessonData.VoiceExercises.filter(p=>p.IdExercise !== exerciseData.exerciseId)
                 _Voice.push(_Exercise)
-                
-                setLessonData({...lessonData, VoiceExercises:_Voice})
-            }
-            }
+                lessonData.VoiceExercises=_Voice
+                localStorage.setItem("LessonData", JSON.stringify(lessonData));
+            }}
           })
           .catch(error => {
             console.log(error);
           });
     }
-
-    useEffect(() => {
-      localStorage.setItem("LessonData", JSON.stringify(lessonData));
-    }, [lessonData]);
 
     const doubleFunc = (e) =>{
       setStatusLabel(true)
@@ -65,7 +60,7 @@ const VoiceExercise = ({Exercise}) =>{
       console.log(text)
       setRecognizedText(text)
     };
-
+    
     const startRecognition = () => {
       recognition.start();
     };
@@ -81,14 +76,14 @@ const VoiceExercise = ({Exercise}) =>{
         <div className={Classes.Exercise}>
             <div className={Classes.Info}>
               <p>Exercise Name: {Exercise.VoiceExercise.Name}</p>
-              {Exercise.VoiceExercise.Type === 1 ? <p>Text to say: {Exercise.VoiceExercise.TextToSay}</p> : null}
+              {Exercise.VoiceExercise.Type === 1 ?  <p>Text to say: {Exercise.VoiceExercise.TextToSay}</p> : null}
               
             </div>
             <div className={Classes.ButtonsPlace}>
 
             {Exercise.VoiceExercise.Type === 0 ?
             <SmallButton onClick={sayText}>Listen text</SmallButton>
-            : 
+            :
             <SmallButton onClick={startRecognition}>Say text</SmallButton>
             }
 
@@ -96,6 +91,7 @@ const VoiceExercise = ({Exercise}) =>{
             
             </div>
             {hint === true ? <p style={{marginLeft:"9px"}}>Hint : {Exercise.VoiceExercise.Type === 0 ? Exercise.VoiceExercise.TextToSay : Exercise.VoiceExercise.Answer}</p> : null}
+            
             {statusLabel === true
             ?
             <div>
@@ -103,7 +99,7 @@ const VoiceExercise = ({Exercise}) =>{
               ?
               <BasicInput value = {Exercise.VoiceExercise.Answer} disabled style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"lime"}}/>
               :
-              <BasicInput placeholder ={"Input listened text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px"}} onChange={e=>doubleFunc(e)}/>
+              <BasicInput disabled={Exercise.VoiceExercise.Type === 1} placeholder ={"Listened text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px"}} onChange={e=>doubleFunc(e)}/>
               }
               </div>
             : 
@@ -112,7 +108,7 @@ const VoiceExercise = ({Exercise}) =>{
               ?
               <BasicInput value = {Exercise.VoiceExercise.Answer} disabled style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"lime"}}/>
               :
-              <BasicInput placeholder ={"Input listened text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"red"}} onChange={e=>doubleFunc(e)}/>
+              <BasicInput disabled={Exercise.VoiceExercise.Type === 1} placeholder ={"Listened text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"red"}} onChange={e=>doubleFunc(e)}/>
               }
               </div>
             }

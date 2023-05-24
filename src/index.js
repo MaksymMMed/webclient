@@ -17,6 +17,9 @@ import AdminLessonsPage from './components/Pages/AdminPages/AdminLessonPage/Admi
 import AdminMainPage from './components/Pages/GeneralPages/MainPage/AdminMainPage';
 import AddGrammar from './components/Pages/AdminPages/AddExercisePage/AddGrammar/AddGrammar'; 
 import UpdateGrammar from './components/Pages/AdminPages/UpdateExercisePage/UpdateGrammar/UpdateGrammar';
+import AddVoice from './components/Pages/AdminPages/AddExercisePage/AddVoice/AddVoice';
+import AddTranslate from './components/Pages/AdminPages/AddExercisePage/AddTranslate/AddTranslate'; 
+
 
 const router = createBrowserRouter([
   {
@@ -58,6 +61,14 @@ const router = createBrowserRouter([
   {
     path:"/AddGrammar",
     element: <AdminMainPage><AddGrammar/></AdminMainPage>
+  },
+  {
+    path:"/AddTranslate",
+    element: <AdminMainPage><AddTranslate/></AdminMainPage>
+  },
+  {
+    path:"/AddVoice",
+    element: <AdminMainPage><AddVoice/></AdminMainPage>
   },
   {
     path:"/UpdateGrammar",

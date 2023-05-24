@@ -18,7 +18,6 @@ const AdminLessonsPage = () =>
 
     const DeleteLesson = (Lesson) =>{
         SetLessons(Lessons.filter(item=>item.Id !== Lesson.Id))
-        console.log("success")
     }
 
     const Navigate = useNavigate()
