@@ -26,8 +26,8 @@ const MainPage = (props) =>{
         <div>
           {UserData !== null ?
             <div>
-            <header>
-                <h1 onClick={()=>Navigate("/LessonsPage")}>Lang4Easy</h1>
+            <header style={{paddingBottom:"15px"}}>
+                <button onClick={()=>Navigate("/LessonsPage")} style={{border:"none",backgroundColor:"transparent",fontSize:"34px",fontWeight:"bold",margin:"25px 0 0 0"}}>Lang4Easy</button>
                 <SmallButton style={{marginTop:"25px"}} onClick={openProfile}>Profile</SmallButton>
             </header>
             {props.children}

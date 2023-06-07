@@ -27,9 +27,8 @@ const AdminExercisePage = () =>{
     }
     
     return(
-        <div>
             <div>
-            <h1><p style={{marginLeft:"50px"}} onClick={()=>Navigate(-1)}>Повернутися до уроків</p></h1>
+            <button onClick={()=>Navigate(-1)} style={{border:"none",backgroundColor:"transparent",fontSize:"34px",fontWeight:"bold",margin:"15px 0 0 50px"}}>Повернутися до уроків</button>
             <div className="ExercisesPlace">
             <h1 className="AdminExerciseLabel">Граматичні вправи</h1>
             <div className="AddExerciseButtonPlace">
@@ -63,7 +62,6 @@ const AdminExercisePage = () =>{
             </div>
             </div>
             </div>
-        </div>
     )
 }
 

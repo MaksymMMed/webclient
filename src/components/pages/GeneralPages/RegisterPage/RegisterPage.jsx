@@ -9,7 +9,7 @@ import BasicInput from "../../../UI/Input/BasicInput";
 const RegisterPage = () =>{
     
     const [IsDataCorrect,setIsDataCorrect] = useState()
-    const [userData,setUserData] = useState({email:'',password:'',login:''})
+    const [userData,setUserData] = useState({email:'stepan@gmail.com',password:'password',login:'stepan911'})
     const config = {
       headers: {
         'Content-Type': 'application/json'

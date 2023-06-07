@@ -31,7 +31,7 @@ const ProfilePage = () =>{
     
     return(
         <div>
-        <h1><p style={{marginLeft:"25px"}} onClick={()=>Navigate(-1)} >Назад</p></h1>
+            <button onClick={()=>Navigate(-1)} style={{border:"none",backgroundColor:"transparent",fontSize:"34px",fontWeight:"bold",margin:"15px 0 0 50px"}}>Повернутися до уроків</button>
         <div className="ProfilePage">
             <div className="InputsPlace">
                 <p style={{width:"80px"}}>Login:</p>

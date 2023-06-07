@@ -18,15 +18,25 @@ const ExercisePage = () => {
     
     useEffect(()=>{
         ExercisesId = []
-        ExerciseData.GrammarExercises.forEach(element => {
+
+        if (ExerciseData.GrammarExercises.length !==0) {
+            ExerciseData.GrammarExercises.forEach(element => {
             ExercisesId.push({Id:element.IdExercise,Type:0})
-        });
-        ExerciseData.VoiceExercises.forEach(element => {
+        })}
+
+        if (ExerciseData.VoiceExercises.length !==0) {
+            ExerciseData.VoiceExercises.forEach(element => {
             ExercisesId.push({Id:element.IdExercise,Type:1})
-        });
+            })}
+        
+        if (ExerciseData.TranslateExercises.length !==0) {
+            
         ExerciseData.TranslateExercises.forEach(element => {
             ExercisesId.push({Id:element.IdExercise,Type:2})
-        });
+        })}
+        if (ExercisesId.length === 0) {
+            return
+        }
         SetMaxIndex(ExercisesId.length-1)
         SetCurrentExercise(ExercisesId[CurrentIndex].Id)
         SetTypeExercise(ExercisesId[CurrentIndex].Type)
@@ -45,7 +55,7 @@ const ExercisePage = () => {
 
     return(
         <div>
-        <h1><p style={{marginLeft:"50px"}} onClick={()=>Navigate(-1)}>Повернутися до уроків</p></h1>
+        <button onClick={()=>Navigate(-1)} style={{border:"none",backgroundColor:"transparent",fontSize:"34px",fontWeight:"bold",margin:"15px 0 0 50px"}}>Повернутися до уроків</button>
         {
             IsLoading === true ? null :
         <div className="ExercisePage">
@@ -54,9 +64,9 @@ const ExercisePage = () => {
             ExerciseData.GrammarExercises.map((_Exercise,index) =>
                 <div key={index} style={CurrentExercise === _Exercise.IdExercise ? null : {display:"none"} }>
                 <GrammarExercise  key={_Exercise.IdExercise} Exercise={_Exercise}/>
-                <div style={{display:"flex",justifyContent:"space-between"}}>
-                    <h1 onClick={()=>ChangeExercise(-1)}>Назад</h1>
-                    <h1 onClick={()=>ChangeExercise(1)}>Вперед</h1>
+                <div style={{display:"flex",justifyContent:"space-between",marginTop:"15px"}}>
+                    <button style={{border:"none",backgroundColor:"transparent",fontSize:"34px",fontWeight:"bold"}} onClick={()=>ChangeExercise(-1)}>Назад</button>
+                    <button style={{border:"none",backgroundColor:"transparent",fontSize:"34px",fontWeight:"bold"}} onClick={()=>ChangeExercise(1)}>Вперед</button>
                 </div>
             </div>)
             : null}
@@ -67,9 +77,9 @@ const ExercisePage = () => {
             ExerciseData.VoiceExercises.map((_Exercise,index) =>
             <div key={index} style={CurrentExercise === _Exercise.IdExercise ? null : {display:"none"} }>
             <VoiceExercise  key={_Exercise.IdExercise} Exercise={_Exercise}/>
-            <div style={{display:"flex",justifyContent:"space-between"}}>
-                <h1 onClick={()=>ChangeExercise(-1)}>Назад</h1>
-                <h1 onClick={()=>ChangeExercise(1)}>Вперед</h1>
+            <div style={{display:"flex",justifyContent:"space-between",marginTop:"15px"}}>
+                <button style={{border:"none",backgroundColor:"transparent",fontSize:"34px",fontWeight:"bold"}} onClick={()=>ChangeExercise(-1)}>Назад</button>
+                <button style={{border:"none",backgroundColor:"transparent",fontSize:"34px",fontWeight:"bold"}} onClick={()=>ChangeExercise(1)}>Вперед</button>
             </div>
             </div>)
             : null}
@@ -80,9 +90,9 @@ const ExercisePage = () => {
             ExerciseData.TranslateExercises.map((_Exercise,index) =>
             <div key={index} style={CurrentExercise === _Exercise.IdExercise ? null : {display:"none"} }>
             <TranslateExercise  key={_Exercise.IdExercise} Exercise={_Exercise}/>
-            <div style={{display:"flex",justifyContent:"space-between"}}>
-                <h1 onClick={()=>ChangeExercise(-1)}>Назад</h1>
-                <h1 onClick={()=>ChangeExercise(1)}>Вперед</h1>
+            <div style={{display:"flex",justifyContent:"space-between",marginTop:"15px"}}>
+                <button style={{border:"none",backgroundColor:"transparent",fontSize:"34px",fontWeight:"bold"}} onClick={()=>ChangeExercise(-1)}>Назад</button>
+                <button style={{border:"none",backgroundColor:"transparent",fontSize:"34px",fontWeight:"bold"}} onClick={()=>ChangeExercise(1)}>Вперед</button>
             </div>
         </div>)
         : null}
