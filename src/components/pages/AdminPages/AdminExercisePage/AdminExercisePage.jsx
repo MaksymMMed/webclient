@@ -20,7 +20,7 @@ const AdminExercisePage = () =>{
         var _Translate = ExerciseData.TranslateExercises.filter(item=>item.Id !== Exercise.Id)
         SetExerciseData({...ExerciseData,TranslateExercises:_Translate})
     }
-
+    
     const DeleteVoiceExercise = (Exercise) =>{
         var _Voice = ExerciseData.VoiceExercises.filter(item=>item.Id !== Exercise.Id)
         SetExerciseData({...ExerciseData,VoiceExercises:_Voice})

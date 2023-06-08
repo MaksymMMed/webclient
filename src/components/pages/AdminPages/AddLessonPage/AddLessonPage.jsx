@@ -11,13 +11,14 @@ const AddLessonPage = () =>{
 
     const [NewLesson,SetNewLesson] = useState({LessonName:"",LessonDescription:""})
 
-    const Navigate = useNavigate()
-    const config ={
-        headers:{
-            'Content-Type': 'application/json'
+    const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization':`Bearer ${localStorage.getItem("Token")}`
         }
-    }
+      };
 
+    const Navigate = useNavigate()
     const AddNewLesson = async(e) =>{
         e.preventDefault()
         axios

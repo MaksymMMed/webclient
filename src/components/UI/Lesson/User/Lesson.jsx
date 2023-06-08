@@ -6,12 +6,12 @@ import { useNavigate } from "react-router-dom";
 const Lesson = ({lesson}) =>{
 
     const Navigate = useNavigate();
-
+    
 
     const openLesson = async(e) =>{
       e.preventDefault();
       localStorage.setItem("LessonData",JSON.stringify(lesson))
-      Navigate("/ExercisesPage")
+      Navigate("/ExercisesPage",)
     }
     
     return(

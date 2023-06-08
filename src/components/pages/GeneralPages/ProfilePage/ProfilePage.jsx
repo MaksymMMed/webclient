@@ -11,16 +11,18 @@ const ProfilePage = () =>{
     const Navigate = useNavigate()
     
     const Logout = () =>{
-        axios
-        .post("/api/User/Logout")
-        .then(response =>{
-            if (response.status === 200) {
-                localStorage.clear()
+        localStorage.clear()
                 Navigate("/")
-            }})
-        .catch(error => {
-            console.log(error)
-        })
+        // axios
+        //     .post("/api/User/Logout",{headers:{Authorization:`Bearer ${localStorage.getItem("Token")}`}})
+        // .then(response =>{
+        //     if (response.status === 200) {
+        //         localStorage.clear()
+        //         Navigate("/")
+        //     }})
+        // .catch(error => {
+        //     console.log(error)
+        // })
     }
 
     const OpenAdminPanel = (e) =>{

@@ -19,7 +19,7 @@ const AdminGrammarExercise = ({Exercise,DeleteGrammarExercise}) =>{
     const DeleteGrammar = (e) =>{
         e.preventDefault()
         axios
-        .delete("api/GrammarExercise/DeleteGrammarExerciseById",{params:{id:Exercise.Id}})
+        .delete("api/GrammarExercise/DeleteGrammarExerciseById",{params:{id:Exercise.Id},headers:{Authorization:`Bearer ${localStorage.getItem("Token")}`}})
         .then(response=>
             {
             if (response.status === 200) {
@@ -42,8 +42,7 @@ const AdminGrammarExercise = ({Exercise,DeleteGrammarExercise}) =>{
             <p>Answer : {_Exercise.Answer}</p>
             <p>Variables : {_Exercise.Variables.map(x=>x.concat(" "))}</p>
             <div className={Classes.SmallButtonsPlace}>
-                <SmallButton onClick={ModalState} style={{width:"40%"}}>Видалити</SmallButton>
-                <SmallButton style={{width:"40%"}} onClick={() => Navigate("/UpdateGrammar",{state:_Exercise})}>Редагувати</SmallButton>
+                <SmallButton onClick={ModalState} style={{width:"100%"}}>Видалити</SmallButton>
                 <ReactModal style={{overlay:{width:"630px",height:"230px",marginRight:"auto",marginLeft:"auto",marginTop:"150px"}}} isOpen={modalIsOpen} onRequestClose={ModalState}>
                     <h2>Ви впевнені що хочете видалити елемент?</h2>
                     <div style={{display:"flex",justifyContent:"space-between",padding:"0 10px 0 10px"}}>

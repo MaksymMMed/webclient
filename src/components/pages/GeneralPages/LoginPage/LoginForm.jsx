@@ -25,11 +25,18 @@ const LoginForm = () =>{
     const LogIn = (e) =>{
       e.preventDefault();
       axios.post
-      ('/api/User/SignIn',JSON.stringify(userData),config)
+      ('https:/localhost:7000/api/User/SignIn',JSON.stringify(userData),config)
       .then(response => {
         if (response.status === 200)
         {
-          localStorage.setItem("UserData",JSON.stringify(response.data))
+            let userData = {
+            Id : response.data.Id,
+            Email : response.data.Email,
+            Login : response.data.Login,
+            Role : response.data.Role
+          }
+          localStorage.setItem("UserData",JSON.stringify(userData))
+          localStorage.setItem("Token",response.data.Token)
           Navigate("/LessonsPage")
         }    
       })

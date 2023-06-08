@@ -16,6 +16,7 @@ const VoiceExercise = ({Exercise}) =>{
     const config = {
         headers: {
           'Content-Type': 'application/json'
+          ,'Authorization':`Bearer ${localStorage.getItem("Token")}`
         }
       };
 
@@ -99,7 +100,7 @@ const VoiceExercise = ({Exercise}) =>{
               ?
               <BasicInput value = {Exercise.VoiceExercise.Answer} disabled style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"lime"}}/>
               :
-              <BasicInput disabled={Exercise.VoiceExercise.Type === 1} placeholder ={"Listened text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px"}} onChange={e=>doubleFunc(e)}/>
+              <BasicInput value = {recognizedText} disabled={Exercise.VoiceExercise.Type === 1} placeholder ={"Listened text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px"}} onChange={e=>doubleFunc(e)}/>
               }
               </div>
             : 
@@ -108,7 +109,7 @@ const VoiceExercise = ({Exercise}) =>{
               ?
               <BasicInput value = {Exercise.VoiceExercise.Answer} disabled style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"lime"}}/>
               :
-              <BasicInput disabled={Exercise.VoiceExercise.Type === 1} placeholder ={"Listened text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"red"}} onChange={e=>doubleFunc(e)}/>
+              <BasicInput value = {recognizedText} disabled={Exercise.VoiceExercise.Type === 1} placeholder ={"Listened text..."} style={{marginTop:"8px", width:"90%",marginLeft:"13px",backgroundColor:"red"}} onChange={e=>doubleFunc(e)}/>
               }
               </div>
             }

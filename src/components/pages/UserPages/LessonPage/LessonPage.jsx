@@ -11,15 +11,10 @@ const LessonPage = () =>
         getLessons()   
     },[])
     
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    };
 
     const getLessons = async () =>{
       axios
-      .get('/api/Lesson/GetUserLessons', {params : {id: userData.Id}} ,config)
+        .get('/api/Lesson/GetUserLessons', {params : {id: userData.Id},headers:{Authorization: `Bearer ${localStorage.getItem("Token")}`}})
       .then(response => {
         setLessons(response.data);
       })

@@ -21,7 +21,7 @@ const AdminTranslateExercise = ({Exercise,DeleteTranslateExercise}) =>{
     const DeleteTranslate = (e) =>{
         e.preventDefault()
         axios
-        .delete("api/TranslateExercise/DeleteTranslateExerciseById",{params:{id:Exercise.Id}})
+        .delete("api/TranslateExercise/DeleteTranslateExerciseById",{params:{id:Exercise.Id},headers:{Authorization:`Bearer ${localStorage.getItem("Token")}`}})
         .then(response=>
             {
             if (response.status === 200) {
@@ -43,8 +43,7 @@ const AdminTranslateExercise = ({Exercise,DeleteTranslateExercise}) =>{
             <p>Question : {_Exercise.Question}</p>
             <p>Answer : {_Exercise.Answer}</p>
             <div className={Classes.SmallButtonsPlace}>
-                <SmallButton onClick={ModalState} style={{width:"40%"}}>Видалити</SmallButton>
-                <SmallButton style={{width:"40%"}} onClick={() => Navigate("/UpdateGrammar",{state:_Exercise})}>Редагувати</SmallButton>
+                <SmallButton onClick={ModalState} style={{width:"100%"}}>Видалити</SmallButton>
                 <ReactModal style={{overlay:{width:"630px",height:"230px",marginRight:"auto",marginLeft:"auto",marginTop:"150px"}}} isOpen={modalIsOpen} onRequestClose={ModalState}>
                     <h2>Ви впевнені що хочете видалити елемент?</h2>
                     <div style={{display:"flex",justifyContent:"space-between",padding:"0 10px 0 10px"}}>
